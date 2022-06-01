@@ -18,6 +18,8 @@ DELAY = 3
 
 def handler(event=None, context=None):
     options = webdriver.ChromeOptions()
+    prefs = {"download.default_directory": "/some"}
+    options.add_experimental_option("prefs", prefs)
     options.binary_location = '/opt/chrome/chrome'
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
@@ -65,15 +67,20 @@ def handler(event=None, context=None):
     driver.close()
     driver.quit()
 
+    cmd = 'cd /some'
+    os.system(cmd)
+
     cmd = 'ls'
     os.system(cmd)
-    shutil.unpack_archive('10042022-19052022.zip', '.')
 
-    with open('LG220519.CSV', mode='r') as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        line_count = 0
-        for row in csv_reader:
-            print(row)
+    #
+    # shutil.unpack_archive('10042022-19052022.zip', '.')
+    #
+    # with open('LG220519.CSV', mode='r') as csv_file:
+    #     csv_reader = csv.DictReader(csv_file)
+    #     line_count = 0
+    #     for row in csv_reader:
+    #         print(row)
 
     return {
         "status": "OK"
