@@ -61,10 +61,3 @@ def handler(event=None, context=None):
     # close window
     driver.close()
     driver.quit()
-
-    print("========================================")
-    print("Download completed!")
-
-    return {
-        "status": "OK"
-    }
