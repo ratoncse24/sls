@@ -65,8 +65,8 @@ def handler(event=None, context=None):
     driver.close()
     driver.quit()
 
-    cmd = 'ls'
-    os.system(cmd)
+    # cmd = 'ls'
+    # os.system(cmd)
     shutil.unpack_archive('10042022-19052022.zip', '.')
 
     with open('LG220519.CSV', mode='r') as csv_file:
