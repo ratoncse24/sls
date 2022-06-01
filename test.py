@@ -84,14 +84,14 @@ def handler(event=None, context=None):
     cmd = 'ls'
     os.system(cmd)
 
-    #
-    # shutil.unpack_archive('10042022-19052022.zip', '.')
-    #
-    # with open('LG220519.CSV', mode='r') as csv_file:
-    #     csv_reader = csv.DictReader(csv_file)
-    #     line_count = 0
-    #     for row in csv_reader:
-    #         print(row)
+
+    shutil.unpack_archive('/tmp/10042022-19052022.zip', '.')
+
+    with open('/tmp/LG220519.CSV', mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        line_count = 0
+        for row in csv_reader:
+            print(row)
 
     return {
         "status": "OK"
