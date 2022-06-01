@@ -20,7 +20,7 @@ DIR = mkdtemp()
 
 def handler(event=None, context=None):
     options = webdriver.ChromeOptions()
-    downloadDir = f"{os.getcwd()}//downloads//"
+    downloadDir = "/tmp"
     # Make sure path exists.
     Path(downloadDir).mkdir(parents=True, exist_ok=True)
 
