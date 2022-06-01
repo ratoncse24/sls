@@ -85,7 +85,7 @@ def handler(event=None, context=None):
     os.system(cmd)
 
 
-    shutil.unpack_archive('/tmp/10042022-19052022.zip', '.')
+    shutil.unpack_archive('/tmp/10042022-19052022.zip', '/tmp')
 
     with open('/tmp/LG220519.CSV', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
