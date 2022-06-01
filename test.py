@@ -15,6 +15,7 @@ URL = 'https://portal.studer-innotec.com/User/Login'
 USERNAME = "microenergy.kirchhoff@gmail.com"
 PASSWORD = "Dharcelona"
 DELAY = 3
+DIR = mkdtemp()
 
 def handler(event=None, context=None):
     options = webdriver.ChromeOptions()
@@ -29,9 +30,9 @@ def handler(event=None, context=None):
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-dev-tools")
     options.add_argument("--no-zygote")
-    options.add_argument(f"--user-data-dir={mkdtemp()}")
-    options.add_argument(f"--data-path={mkdtemp()}")
-    options.add_argument(f"--disk-cache-dir={mkdtemp()}")
+    options.add_argument(f"--user-data-dir={DIR}")
+    options.add_argument(f"--data-path={DIR}")
+    options.add_argument(f"--disk-cache-dir={DIR}")
     options.add_argument("--remote-debugging-port=9222")
     driver = webdriver.Chrome("/opt/chromedriver", options=options)
 
@@ -67,7 +68,7 @@ def handler(event=None, context=None):
     driver.close()
     driver.quit()
 
-    cmd = 'cd /some'
+    cmd = f"cd {DIR}"
     os.system(cmd)
 
     cmd = 'ls'
