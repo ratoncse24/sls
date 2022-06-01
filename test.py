@@ -1,3 +1,6 @@
+import csv
+import os
+import shutil
 import time
 
 from selenium import webdriver
@@ -62,8 +65,15 @@ def handler(event=None, context=None):
     driver.close()
     driver.quit()
 
-    print("========================================")
-    print("Download completed!")
+    # cmd = 'ls'
+    # os.system(cmd)
+    shutil.unpack_archive('10042022-19052022.zip', '.')
+
+    with open('LG220519.CSV', mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        line_count = 0
+        for row in csv_reader:
+            print(row)
 
     return {
         "status": "OK"
