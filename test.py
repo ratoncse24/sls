@@ -2,6 +2,7 @@ import csv
 import os
 import shutil
 import time
+from pathlib import Path
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -19,8 +20,17 @@ DIR = mkdtemp()
 
 def handler(event=None, context=None):
     options = webdriver.ChromeOptions()
-    prefs = {"download.default_directory": "/some"}
-    options.add_experimental_option("prefs", prefs)
+    downloadDir = f"{os.getcwd()}//downloads//"
+    # Make sure path exists.
+    Path(downloadDir).mkdir(parents=True, exist_ok=True)
+
+    # Set Preferences.
+    preferences = {"download.default_directory": downloadDir,
+                   "download.prompt_for_download": False,
+                   "directory_upgrade": True,
+                   "safebrowsing.enabled": True}
+
+    options.add_experimental_option("prefs", preferences)
     options.binary_location = '/opt/chrome/chrome'
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
@@ -68,7 +78,7 @@ def handler(event=None, context=None):
     driver.close()
     driver.quit()
 
-    cmd = f"cd {DIR}"
+    cmd = f"cd {downloadDir} && ls"
     os.system(cmd)
 
     cmd = 'ls'
