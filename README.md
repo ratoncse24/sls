@@ -9,6 +9,9 @@ This image goes with these versions. [These are automatically updated and tested
 - chromedriver 102.0.5005.61
 - selenium 4.2.0
 
+## AWS Environment
+- Root AWS account: solshare
+- Region: ap-southeast-1
 
 ## Running the demo
 
@@ -16,6 +19,7 @@ This image goes with these versions. [These are automatically updated and tested
 $ npm install -g serverless # skip this line if you have already installed Serverless Framework
 $ export AWS_REGION=ap-southeast-1 # You can specify region or skip this line. us-east-1 will be used by default.
 $ sls create --template-url "https://github.com/ratoncse24/sls/tree/master" --path docker-selenium-lambda && cd $_
+$ sls create --template-path * --path docker-selenium-lambda && cd $_
 $ sls deploy
 $ sls invoke --function demo # Yay! You will get texts of example.com
 ```
