@@ -1,4 +1,4 @@
-## Serverless lambda to pull studer data
+# Serverless lambda to pull studer data
 
 This will connect with studer dashboard and pull daily data.
 

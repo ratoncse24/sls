@@ -63,7 +63,7 @@ def handler(event=None, context=None):
     options.add_argument("--remote-debugging-port=9222")
     driver = webdriver.Chrome("/opt/chromedriver", options=options)
 
-    driver.get("https://example.com/")
+    # driver.get("https://example.com/")
 
     driver.get(URL)
     WebDriverWait(driver, DELAY).until(EC.presence_of_element_located((By.XPATH, "//button[@type='submit']")))
@@ -73,10 +73,10 @@ def handler(event=None, context=None):
     driver.find_element(By.ID, "Email").send_keys(USERNAME)
     driver.find_element(By.ID, "Password").send_keys(PASSWORD)
     driver.find_element(By.XPATH, "//button[@type='submit']").click()
-    WebDriverWait(driver, DELAY).until(EC.presence_of_element_located((By.ID, "InstallationGridDatalogs_2_gridcommand4")))
+    WebDriverWait(driver, DELAY).until(EC.presence_of_element_located((By.ID, "InstallationGridDatalogs_2_gridcommand5")))
 
     # visit datalog page by grid
-    driver.find_element(By.XPATH, "//button[@id='InstallationGridDatalogs_2_gridcommand4']").click()
+    driver.find_element(By.XPATH, "//button[@id='InstallationGridDatalogs_2_gridcommand5']").click()
     WebDriverWait(driver, DELAY).until(EC.presence_of_element_located((By.ID, "download-button")))
 
     # go to download window
@@ -109,9 +109,9 @@ def handler(event=None, context=None):
     with open(f'/tmp/{CSV_FILE_NAME}.CSV', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
-            mo = dateRegex.search(row['v7.2'])
+            mo = dateRegex.search(row['v7.4'])
             if mo:
-                time_raw = row['v7.2']
+                time_raw = row['v7.4']
                 date_obj = datetime.strptime(time_raw, '%d.%m.%Y %H:%M')
                 params = {
                     'time': str(date_obj),
